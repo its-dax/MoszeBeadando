@@ -84,6 +84,7 @@ int main()
     string input;
     string output;
     string inputString;
+    char inputChar;
     int num;
     DB db;
     vec first;
@@ -110,8 +111,9 @@ int main()
         }
         else if (input == "deleterow")
         {
-            cout << "Which one?" << endl;
-            cin >> num;
+            cout << "Which one? (A-Z)" << endl;
+            cin >> inputChar;
+            num = int(inputChar - 65);
             cout << "Deleting row..\n" << endl;
             deleteRow(db, num);
 
@@ -128,14 +130,14 @@ int main()
         else if (input == "edit")
         {
             cout << "Which Row?" << endl;
-            cin >> inputString;
+            cin >> inputChar;
             cout << "Which Col?" << endl;
             cin >> num;
 
             cout << "What should the new value be?" << endl;
             cin >> output;
             cout << "Editing line.." << endl;
-            edit(db, int(inputString[0] - 65), num, output);
+            edit(db, int(inputChar - 65), num, output);
         }
         else if (input == "addrows")
         {

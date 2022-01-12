@@ -13,12 +13,22 @@ using DB = vector<vec>;
 
 void printDB(const DB &v)
 {
+    int i= 65;
     cout << endl;
-   for(vec row : v)
-   {
-      for (string s:row)    cout << setw( 12 ) << left << s << " | ";
-      cout << '\n';
-   }
+    cout << "  | ";
+    for (int j = 0; j < v[0].size(); j++)
+    {   
+        cout << setw( 7 ) << right << j << ". col | ";
+    }
+    cout << endl;
+
+    for(vec row : v)
+    {
+        cout << char(i) << " | ";
+        i++;
+        for (string s:row)    cout << setw( 12 ) << left << s << " | ";
+        cout << '\n';
+    }
     cout << endl;
 }
 
@@ -113,8 +123,9 @@ int main()
         {
             cout << "Which one? (A-Z)" << endl;
             cin >> inputChar;
+            inputChar = toupper(inputChar);
             
-            while ((int(inputChar) < 65) || (int(inputChar) > 90) || ((int(inputChar) - 65)>  (db.size()-1)) || cin.fail())
+            while ((int(inputChar) < 65) || (int(inputChar) > 90) || ((int(inputChar) - 65) > (db.size()-1)) || cin.fail())
             {
                 cin.clear();
                 cin.ignore(256,'\n');
@@ -138,14 +149,13 @@ int main()
             
             cout << "Deleting col..\n" << endl;
             deleteCol(db, num);
-
-
         }
         else if (input == "edit")
         {
             cout << "Which Row (A-Z)?" << endl;
             cin >> inputChar;
-            while (int(inputChar) < 65 || int(inputChar) > 90  || (int(inputChar) - 65) > db.size() || cin.fail())
+            inputChar = toupper(inputChar);
+            while (int(inputChar) < 65 || int(inputChar) > 90  || (int(inputChar) - 65) > (db.size() -1) || cin.fail())
             {   
                 cin.clear();
                 cin.ignore(256,'\n');
@@ -153,9 +163,9 @@ int main()
                 cin >> inputChar;
             }
             
-            cout << "Which Col?" << endl;
+            cout << "Which Col? (0-" << (db[0].size()-1) << ")" << endl;
             cin >> num;
-            while (num < 0 || num > 50 || (num > (db[0].size() - 1)) || cin.fail())
+            while (num < 0 || (num > (db[0].size() - 1)) || cin.fail())
             {
                 cin.clear();
                 cin.ignore(256,'\n');

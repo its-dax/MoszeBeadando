@@ -4,20 +4,22 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 using vec = vector<string>;
 using DB = vector<vec>;
 
 
-
 void printDB(const DB &v)
 {
+    cout << endl;
    for(vec row : v)
    {
-      for (string s:row)    cout << setw( 12 ) << left << s << " || ";
+      for (string s:row)    cout << setw( 12 ) << left << s << " | ";
       cout << '\n';
    }
+    cout << endl;
 }
 
 void AddRows(DB &v, int n)
@@ -75,22 +77,87 @@ void deleteCol(DB &v, int col)
 
 int main()
 {
-//Base region
+    
+
+ //Base region
     bool exit = false;
-    string x;
+    string input;
+    string output;
+    string inputString;
+    int num;
     DB db;
     vec first;
     first.push_back(" ");
     db.push_back(first);
-//Base region end
+ //Base region end
 
 
-// manipulation
+ // manipulation
+    while (!exit)
+    {
+        printDB(db);
+        cout << "What do you want to do? (addrows, addcols, deleterow, deletecol, edit, exit)" << endl;
 
-    AddRows(db, 5);
-    AddCols(db, 1);
-    printDB(db);
+        cin >> input;
+        for_each(input.begin(), input.end(), [](char & c)
+        {
+            c = ::tolower(c);
+        });
 
-    cin >> x;
+        if (input == "exit")
+        {
+            exit = true;
+        }
+        else if (input == "deleterow")
+        {
+            cout << "Which one?" << endl;
+            cin >> num;
+            cout << "Deleting row..\n" << endl;
+            deleteRow(db, num);
+
+        }
+        else if (input == "deletecol")
+        {
+            cout << "Which one?" << endl;
+            cin >> num;
+            cout << "Deleting col..\n" << endl;
+            deleteCol(db, num);
+
+
+        }
+        else if (input == "edit")
+        {
+            cout << "Which Row?" << endl;
+            cin >> inputString;
+            cout << "Which Col?" << endl;
+            cin >> num;
+
+            cout << "What should the new value be?" << endl;
+            cin >> output;
+            cout << "Editing line.." << endl;
+            edit(db, int(inputString[0] - 65), num, output);
+        }
+        else if (input == "addrows")
+        {
+            cout << "How many?" << endl;
+            cin >> num;
+            cout << "Adding rows..\n" << endl;
+            AddRows(db, num);
+            
+        }
+        else if (input == "addcols")
+        {
+            cout << "How many?" << endl;
+            cin >> num;
+            cout << "Adding cols..\n";
+            AddCols(db, num);
+            
+        }
+        else
+        {
+            cout << "Not a valid input. Please try again." << endl;
+        }
+        
+    }
 }
 

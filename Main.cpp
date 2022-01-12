@@ -113,6 +113,14 @@ int main()
         {
             cout << "Which one? (A-Z)" << endl;
             cin >> inputChar;
+            
+            while ((int(inputChar) < 65) || (int(inputChar) > 90) || ((int(inputChar) - 65)>  (db.size()-1)) || cin.fail())
+            {
+                cin.clear();
+                cin.ignore(256,'\n');
+                cout << "Not a valid row. Try again." << endl;
+                cin >> inputChar;
+            }
             num = int(inputChar - 65);
             cout << "Deleting row..\n" << endl;
             deleteRow(db, num);
@@ -122,6 +130,12 @@ int main()
         {
             cout << "Which one?" << endl;
             cin >> num;
+            while (num < 0 || num > db[num].size())
+            {
+                cout << "Not a valid col. Try again." << endl;
+                cin >> num;
+            }
+            
             cout << "Deleting col..\n" << endl;
             deleteCol(db, num);
 
@@ -129,10 +143,25 @@ int main()
         }
         else if (input == "edit")
         {
-            cout << "Which Row?" << endl;
+            cout << "Which Row (A-Z)?" << endl;
             cin >> inputChar;
+            while (int(inputChar) < 65 || int(inputChar) > 90  || (int(inputChar) - 65) > db.size() || cin.fail())
+            {   
+                cin.clear();
+                cin.ignore(256,'\n');
+                cout << "Not a valid row. Try again." << endl;
+                cin >> inputChar;
+            }
+            
             cout << "Which Col?" << endl;
             cin >> num;
+            while (num < 0 || num > 50 || (num > (db[0].size() - 1)) || cin.fail())
+            {
+                cin.clear();
+                cin.ignore(256,'\n');
+                cout << "Not a valid col. Try again." << endl;
+                cin >> num;
+            }
 
             cout << "What should the new value be?" << endl;
             cin >> output;
@@ -143,6 +172,13 @@ int main()
         {
             cout << "How many?" << endl;
             cin >> num;
+            while (!(num > 0 && num < 50) || cin.fail())
+            {
+                cin.clear();
+                cin.ignore(256,'\n');
+                cout << "Not a valid input. Try again." << endl;
+                cin >> num;
+            }
             cout << "Adding rows..\n" << endl;
             AddRows(db, num);
             
@@ -151,6 +187,13 @@ int main()
         {
             cout << "How many?" << endl;
             cin >> num;
+            while (num < 1 || num > 50 || cin.fail())
+            {
+                cin.clear();
+                cin.ignore(256,'\n');
+                cout << "Not a valid input. Try again." << endl;
+                cin >> num;
+            }
             cout << "Adding cols..\n";
             AddCols(db, num);
             

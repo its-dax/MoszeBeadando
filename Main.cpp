@@ -1,18 +1,20 @@
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 #include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <algorithm>
 
+
 using namespace std;
 using vec = vector<string>;
-using DB = vector<vec>;
+using db = vector<vec>;
 
 
 
-void printDB(const DB &v)
+void print_matrix(const db &v)
 {
     int i= 65;
     cout << endl;
@@ -23,12 +25,12 @@ void printDB(const DB &v)
     }
     cout << endl;
 
-    for(vec row : v)
+    for(const vec& row : v)
     {
-        int rowCount = 0;
+        int row_count = 0;
         for (string s:row)
         {
-            if (rowCount == 0)
+            if (row_count == 0)
             {
                 cout << "------------------";
             }
@@ -36,12 +38,12 @@ void printDB(const DB &v)
             {
                 cout << "---------------"; 
             }
-            rowCount++;
+            row_count++;
         }
         cout << endl;
-        cout << char(i) << " | ";
+        cout << static_cast<char>(i) << " | ";
         i++;
-        for (string s:row)
+        for (const string& s:row)
         {
             cout << setw( 12 ) << left << s << " | ";
         }
@@ -50,40 +52,40 @@ void printDB(const DB &v)
     cout << endl;
 }
 
-void AddRows(DB &v, int n)
+auto add_rows(db& v, const int n) -> void
 {
     for (int i = 0; i < n; i++)
     {
-        vec Add;
+        vec add;
         for (int i = 0; i < v[0].size(); i++)
         {
-            Add.push_back(" ");
+            add.push_back(" ");
         }
         
-        v.push_back(Add);
+        v.push_back(add);
     }
 }
 
-void AddCols(DB &v, int n)
+void add_cols(db &v, const int n)
 {
-    for (int j = 0; j < (v.size()); j++)
+    for (auto& j : v)
     {
         for (int i = 0; i < n; i++)
         {
-            v[j].push_back(" ");
+	        j.emplace_back(" ");
         }   
     }
 }
 
-void edit(DB &v, int i, int j, string value )
+void edit(db &v, const int i, const int j, string value )
 {
     if (i < v.size() && j < v[j].size())
     {
-        v[i][j] = value;
+        v[i][j] = std::move(value);
     }
 }
 
-void deleteRow(DB &v, int row)
+void delete_row(db &v, const int row)
 {
     if(row < v.size())    
     {
@@ -92,7 +94,7 @@ void deleteRow(DB &v, int row)
 }
 
 
-void deleteCol(DB &v, int col)
+auto delete_col(db& v, const int col) -> void
 {
     for(vec &row : v)    
     {
@@ -103,35 +105,44 @@ void deleteCol(DB &v, int col)
     }
 }
 
-int main(int argc, char** argv)
+int main(const int argc, char** argv)
 {
  //Base region
     bool exit = false;
     string input;
     string output;
-    string inputString;
-    char inputChar;
+    string input_string;
+    char input_char;
     int num;
-    DB db;
+    db matrix;
     vec first;
     first.push_back(" ");
-    db.push_back(first);
+    matrix.push_back(first);
  //Base region end
 
-    if (argc = 2)
+    if (argc >= 2)
     {
-        FILE* f = fopen(argv[1], "r");
+        ifstream file(argv[1]);
+        if (file.is_open())
+        {
+            //Loading matrix with file content.
+            cout << "File is open.";
+            file.close();
+        }
+        
+        //FILE* f = fopen(argv[1], "r");
     }
     
 
  // manipulation
     while (!exit)
     {
-        printDB(db);
-        cout << "What do you want to do? \nYou can do the following operations:\nAddrows, addcols, deleterow, deletecol, edit, swap, clear, align, exit\n" << endl;
+        print_matrix(matrix);
+        cout << "What do you want to do? \nYou can do the following operations:\n";
+        cout << "Addrows, addcols, deleterow, deletecol, edit, swap, clear, align, save, exit\n" << endl;
 
         cin >> input;
-        for_each(input.begin(), input.end(), [](char & c)
+    	for_each(input.begin(), input.end(), [](char& c)
         {
             c = ::tolower(c);
         });
@@ -143,50 +154,50 @@ int main(int argc, char** argv)
         else if (input == "deleterow")
         {
             cout << "Which one? (A-Z)" << endl;
-            cin >> inputChar;
-            inputChar = toupper(inputChar);
+            cin >> input_char;
+            input_char = toupper(input_char);
             
-            while ((int(inputChar) < 65) || (int(inputChar) > 90) || ((int(inputChar) - 65) > (db.size()-1)) || cin.fail())
+            while ((static_cast<int>(input_char) < 65) || (static_cast<int>(input_char) > 90) || ((static_cast<int>(input_char) - 65) > (matrix.size()-1)) || cin.fail())
             {
                 cin.clear();
                 cin.ignore(256,'\n');
                 cout << "Not a valid row. Try again." << endl;
-                cin >> inputChar;
+                cin >> input_char;
             }
-            num = int(inputChar - 65);
+            num = static_cast<int>(input_char - 65);
             cout << "Deleting row..\n" << endl;
-            deleteRow(db, num);
+            delete_row(matrix, num);
 
         }
         else if (input == "deletecol")
         {
             cout << "Which one?" << endl;
             cin >> num;
-            while (num < 0 || num > db[num].size())
+            while (num < 0 || num > matrix[num].size())
             {
                 cout << "Not a valid col. Try again." << endl;
                 cin >> num;
             }
             
             cout << "Deleting col..\n" << endl;
-            deleteCol(db, num);
+            delete_col(matrix, num);
         }
         else if (input == "edit")
         {
             cout << "Which Row (A-Z)?" << endl;
-            cin >> inputChar;
-            inputChar = toupper(inputChar);
-            while (int(inputChar) < 65 || int(inputChar) > 90  || (int(inputChar) - 65) > (db.size() -1) || cin.fail())
+            cin >> input_char;
+            input_char = toupper(input_char);
+            while (static_cast<int>(input_char) < 65 || static_cast<int>(input_char) > 90  || (static_cast<int>(input_char) - 65) > (matrix.size() -1) || cin.fail())
             {   
                 cin.clear();
                 cin.ignore(256,'\n');
                 cout << "Not a valid row. Try again." << endl;
-                cin >> inputChar;
+                cin >> input_char;
             }
             
-            cout << "Which Col? (0-" << (db[0].size()-1) << ")" << endl;
+            cout << "Which Col? (0-" << (matrix[0].size()-1) << ")" << endl;
             cin >> num;
-            while (num < 0 || (num > (db[0].size() - 1)) || cin.fail())
+            while (num < 0 || (num > (matrix[0].size() - 1)) || cin.fail())
             {
                 cin.clear();
                 cin.ignore(256,'\n');
@@ -197,7 +208,7 @@ int main(int argc, char** argv)
             cout << "What should the new value be?" << endl;
             cin >> output;
             cout << "Editing line.." << endl;
-            edit(db, int(inputChar - 65), num, output);
+            edit(matrix, static_cast<int>(input_char - 65), num, output);
         }
         else if (input == "addrows")
         {
@@ -211,7 +222,7 @@ int main(int argc, char** argv)
                 cin >> num;
             }
             cout << "Adding rows..\n" << endl;
-            AddRows(db, num);
+            add_rows(matrix, num);
             
         }
         else if (input == "addcols")
@@ -226,7 +237,7 @@ int main(int argc, char** argv)
                 cin >> num;
             }
             cout << "Adding cols..\n";
-            AddCols(db, num);
+            add_cols(matrix, num);
             
         }
         else if (input == "swap")
@@ -241,11 +252,16 @@ int main(int argc, char** argv)
         {
             
         }
+        else if (input == "save")
+        {
+            
+        }
         else
         {
             cout << "Not a valid input. Please try again." << endl;
         }
         
     }
+    cout << "\nExiting program.\n";
 }
 

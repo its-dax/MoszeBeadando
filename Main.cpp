@@ -11,6 +11,7 @@ using vec = vector<string>;
 using DB = vector<vec>;
 
 
+
 void printDB(const DB &v)
 {
     int i= 65;
@@ -24,10 +25,27 @@ void printDB(const DB &v)
 
     for(vec row : v)
     {
+        int rowCount = 0;
+        for (string s:row)
+        {
+            if (rowCount == 0)
+            {
+                cout << "------------------";
+            }
+            else
+            {
+                cout << "---------------"; 
+            }
+            rowCount++;
+        }
+        cout << endl;
         cout << char(i) << " | ";
         i++;
-        for (string s:row)    cout << setw( 12 ) << left << s << " | ";
-        cout << '\n';
+        for (string s:row)
+        {
+            cout << setw( 12 ) << left << s << " | ";
+        }
+        cout << endl;
     }
     cout << endl;
 }
@@ -85,10 +103,8 @@ void deleteCol(DB &v, int col)
     }
 }
 
-int main()
+int main(int argc, char** argv)
 {
-    
-
  //Base region
     bool exit = false;
     string input;
@@ -102,12 +118,17 @@ int main()
     db.push_back(first);
  //Base region end
 
+    if (argc = 2)
+    {
+        FILE* f = fopen(argv[1], "r");
+    }
+    
 
  // manipulation
     while (!exit)
     {
         printDB(db);
-        cout << "What do you want to do? (addrows, addcols, deleterow, deletecol, edit, exit)" << endl;
+        cout << "What do you want to do? \nYou can do the following operations:\nAddrows, addcols, deleterow, deletecol, edit, swap, clear, align, exit\n" << endl;
 
         cin >> input;
         for_each(input.begin(), input.end(), [](char & c)
@@ -206,6 +227,18 @@ int main()
             }
             cout << "Adding cols..\n";
             AddCols(db, num);
+            
+        }
+        else if (input == "swap")
+        {
+            
+        }
+        else if (input == "clear")
+        {
+            
+        }
+        else if (input == "align")
+        {
             
         }
         else

@@ -1,10 +1,8 @@
 #include <iostream>
 #include <string>
-#include <utility>
 #include <vector>
 #include <iomanip>
 #include <fstream>
-#include <sstream>
 #include <algorithm>
 
 
@@ -81,7 +79,7 @@ void edit(db &v, const int i, const int j, string value )
 {
     if (i < v.size() && j < v[j].size())
     {
-        v[i][j] = std::move(value);
+        v[i][j] = value;
     }
 }
 
@@ -105,6 +103,39 @@ auto delete_col(db& v, const int col) -> void
     }
 }
 
+void swap(db& v, const int i, const int j, const int x, const int y)
+{
+	const string temp = v[i][j];
+    v[i][j] = v[x][y];
+    v[x][y] = temp;    
+}
+
+bool validrow(const db& matrix, const char c)
+{
+    if ((static_cast<int>(c) < 65) || (static_cast<int>(c) > 90) || ((static_cast<int>(c) - 65) > (matrix.size()-1)) || cin.fail())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    
+} 
+
+bool validcol(const db& matrix, const int i)
+{
+    if ((i >= 0) && (i <= (matrix[i].size()-1)))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
+} 
+
 int main(const int argc, char** argv)
 {
  //Base region
@@ -113,7 +144,9 @@ int main(const int argc, char** argv)
     string output;
     string input_string;
     char input_char;
+    char input_char2;
     int num;
+    int num2;
     db matrix;
     vec first;
     first.push_back(" ");
@@ -129,10 +162,10 @@ int main(const int argc, char** argv)
             cout << "File is open.";
             file.close();
         }
-        
         //FILE* f = fopen(argv[1], "r");
     }
     
+
 
  // manipulation
     while (!exit)
@@ -157,7 +190,7 @@ int main(const int argc, char** argv)
             cin >> input_char;
             input_char = toupper(input_char);
             
-            while ((static_cast<int>(input_char) < 65) || (static_cast<int>(input_char) > 90) || ((static_cast<int>(input_char) - 65) > (matrix.size()-1)) || cin.fail())
+            while (!validrow(matrix, input_char))
             {
                 cin.clear();
                 cin.ignore(256,'\n');
@@ -173,7 +206,7 @@ int main(const int argc, char** argv)
         {
             cout << "Which one?" << endl;
             cin >> num;
-            while (num < 0 || num > matrix[num].size())
+            while (!validcol(matrix, num))
             {
                 cout << "Not a valid col. Try again." << endl;
                 cin >> num;
@@ -184,24 +217,14 @@ int main(const int argc, char** argv)
         }
         else if (input == "edit")
         {
-            cout << "Which Row (A-Z)?" << endl;
+            cout << "Which cell?" << endl;
             cin >> input_char;
-            input_char = toupper(input_char);
-            while (static_cast<int>(input_char) < 65 || static_cast<int>(input_char) > 90  || (static_cast<int>(input_char) - 65) > (matrix.size() -1) || cin.fail())
-            {   
-                cin.clear();
-                cin.ignore(256,'\n');
-                cout << "Not a valid row. Try again." << endl;
-                cin >> input_char;
-            }
-            
-            cout << "Which Col? (0-" << (matrix[0].size()-1) << ")" << endl;
             cin >> num;
-            while (num < 0 || (num > (matrix[0].size() - 1)) || cin.fail())
-            {
-                cin.clear();
-                cin.ignore(256,'\n');
-                cout << "Not a valid col. Try again." << endl;
+            input_char = toupper(input_char);
+            while (!validrow(matrix, input_char) || !validcol(matrix, num))
+            {   
+                cout << "Not a valid cell. Try again." << endl;
+                cin >> input_char;
                 cin >> num;
             }
 
@@ -242,7 +265,33 @@ int main(const int argc, char** argv)
         }
         else if (input == "swap")
         {
+            cout << "Which cell do you want to swap?" << endl;
+            cin >> input_char;
+            cin >> num;
+            input_char = toupper(input_char);
+            while (!validrow(matrix, input_char) || !validcol(matrix, num))
+            {
+                cin.clear();
+                cin.ignore(256, '\n');
+                cout << "Not a valid cell. Try again." << endl;
+                cin >> input_char;
+                cin >> num;
+            }
             
+            cout << "Which cell do you want to swap with?" << endl;
+            cin >> input_char2;
+            cin >> num2;
+            input_char2 = toupper(input_char2);
+            while (!validrow(matrix, input_char) || !validcol(matrix, num))
+            {
+                cin.clear();
+                cin.ignore(256, '\n');
+                cout << "Not a valid cell. Try again." << endl;
+                cin >> input_char;
+                cin >> num;
+            }
+            swap(matrix, static_cast<int>(input_char - 65), num, static_cast<int>(input_char2 - 65), num2);
+
         }
         else if (input == "clear")
         {

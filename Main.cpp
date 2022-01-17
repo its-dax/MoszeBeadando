@@ -141,7 +141,7 @@ bool validcol(const db& matrix, const int i)
     
 }
 
-void clear(db& v,  int i, int j, const int x, const int y)
+void clear(db& v,  int i, const int j, const int x, const int y)
 {
 	for (i; i <= x; i++)
 	{
@@ -347,7 +347,33 @@ int main(const int argc, char** argv)
 	            cin >> input_char;
 	            cin >> num;
 	        }
-			clear(matrix, static_cast<int>(input_char - 65), num, static_cast<int>(input_char2 - 65), num2);
+            int minR;
+            int maxR;
+            int minC;
+            int maxC;
+
+	        if (static_cast<int>(input_char - 65) > static_cast<int>(input_char2 - 65))
+	        {
+                maxR = static_cast<int>(input_char - 65);
+                minR = static_cast<int>(input_char2 - 65);
+	        }
+            else
+            {
+                minR = static_cast<int>(input_char - 65);
+                maxR = static_cast<int>(input_char2 - 65);
+            }
+	        if (num > num2)
+	        {
+                minC = num2;
+                maxC = num;
+	        }
+            else
+            {
+                minC = num;
+                maxC = num2;
+            }
+
+			clear(matrix, minR, minC, maxR, maxC);
         }
         else if (input == "align")
         {

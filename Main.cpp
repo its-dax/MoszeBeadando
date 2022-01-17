@@ -75,12 +75,19 @@ void add_cols(db &v, const int n)
     }
 }
 
-void edit(db &v, const int i, const int j, string value )
+void edit(db &v, const int i, const int j, const string& value )
 {
     if (i < v.size() && j < v[j].size())
     {
         v[i][j] = value;
     }
+}
+
+void swap(db& v, const int i, const int j, const int x, const int y)
+{
+    const string temp = v[i][j];
+    v[i][j] = v[x][y];
+    v[x][y] = temp;
 }
 
 void delete_row(db &v, const int row)
@@ -103,11 +110,9 @@ auto delete_col(db& v, const int col) -> void
     }
 }
 
-void swap(db& v, const int i, const int j, const int x, const int y)
+bool mycomp(const string a, const string b)
 {
-	const string temp = v[i][j];
-    v[i][j] = v[x][y];
-    v[x][y] = temp;    
+	return a<b;
 }
 
 bool validrow(const db& matrix, const char c)
@@ -134,15 +139,27 @@ bool validcol(const db& matrix, const int i)
         return false;
     }
     
-} 
+}
+
+void clear(db& v,  int i, int j, const int x, const int y)
+{
+	for (i; i <= x; i++)
+	{
+        int n = j;
+        for (n; n <= y; n++)
+        {
+            v[i][n] = " ";
+        }
+	}
+}
 
 int main(const int argc, char** argv)
 {
  //Base region
     bool exit = false;
     string input;
-    string output;
     string input_string;
+    string output;
     char input_char;
     char input_char2;
     int num;
@@ -172,7 +189,7 @@ int main(const int argc, char** argv)
     {
         print_matrix(matrix);
         cout << "What do you want to do? \nYou can do the following operations:\n";
-        cout << "Addrows, addcols, deleterow, deletecol, edit, swap, clear, align, save, exit\n" << endl;
+        cout << "Addrows, addcols, deleterow, deletecol, edit, swap, clear, align, save, exit\n\n";
 
         cin >> input;
     	for_each(input.begin(), input.end(), [](char& c)
@@ -186,7 +203,7 @@ int main(const int argc, char** argv)
         }
         else if (input == "deleterow")
         {
-            cout << "Which one? (A-Z)" << endl;
+            cout << "Which one? (A-Z)\n";
             cin >> input_char;
             input_char = toupper(input_char);
             
@@ -194,54 +211,54 @@ int main(const int argc, char** argv)
             {
                 cin.clear();
                 cin.ignore(256,'\n');
-                cout << "Not a valid row. Try again." << endl;
+                cout << "Not a valid row. Try again.\n";
                 cin >> input_char;
             }
             num = static_cast<int>(input_char - 65);
-            cout << "Deleting row..\n" << endl;
+            cout << "Deleting row..\n\n";
             delete_row(matrix, num);
 
         }
         else if (input == "deletecol")
         {
-            cout << "Which one?" << endl;
+            cout << "Which one?\n";
             cin >> num;
             while (!validcol(matrix, num))
             {
-                cout << "Not a valid col. Try again." << endl;
+                cout << "Not a valid col. Try again.\n";
                 cin >> num;
             }
             
-            cout << "Deleting col..\n" << endl;
+            cout << "Deleting col..\n\n";
             delete_col(matrix, num);
         }
         else if (input == "edit")
         {
-            cout << "Which cell?" << endl;
+            cout << "Which cell?\n";
             cin >> input_char;
             cin >> num;
             input_char = toupper(input_char);
             while (!validrow(matrix, input_char) || !validcol(matrix, num))
             {   
-                cout << "Not a valid cell. Try again." << endl;
+                cout << "Not a valid cell. Try again.\n";
                 cin >> input_char;
                 cin >> num;
             }
 
-            cout << "What should the new value be?" << endl;
+            cout << "What should the new value be?\n";
             cin >> output;
             cout << "Editing line.." << endl;
             edit(matrix, static_cast<int>(input_char - 65), num, output);
         }
         else if (input == "addrows")
         {
-            cout << "How many?" << endl;
+            cout << "How many?\n";
             cin >> num;
             while (!(num > 0 && num < 50) || cin.fail())
             {
                 cin.clear();
                 cin.ignore(256,'\n');
-                cout << "Not a valid input. Try again." << endl;
+                cout << "Not a valid input. Try again.\n";
                 cin >> num;
             }
             cout << "Adding rows..\n" << endl;
@@ -256,7 +273,7 @@ int main(const int argc, char** argv)
             {
                 cin.clear();
                 cin.ignore(256,'\n');
-                cout << "Not a valid input. Try again." << endl;
+                cout << "Not a valid input. Try again.\n";
                 cin >> num;
             }
             cout << "Adding cols..\n";
@@ -265,37 +282,72 @@ int main(const int argc, char** argv)
         }
         else if (input == "swap")
         {
-            cout << "Which cell do you want to swap?" << endl;
+            cout << "Which cell do you want to swap?\n";
             cin >> input_char;
             cin >> num;
             input_char = toupper(input_char);
             while (!validrow(matrix, input_char) || !validcol(matrix, num))
             {
-                cin.clear();
-                cin.ignore(256, '\n');
-                cout << "Not a valid cell. Try again." << endl;
+                cout << "Not a valid cell. Try again.\n";
                 cin >> input_char;
                 cin >> num;
             }
             
-            cout << "Which cell do you want to swap with?" << endl;
+            cout << "Which cell do you want to swap with?\n";
             cin >> input_char2;
             cin >> num2;
             input_char2 = toupper(input_char2);
             while (!validrow(matrix, input_char) || !validcol(matrix, num))
             {
-                cin.clear();
-                cin.ignore(256, '\n');
-                cout << "Not a valid cell. Try again." << endl;
+                cout << "Not a valid cell. Try again.\n";
                 cin >> input_char;
                 cin >> num;
             }
             swap(matrix, static_cast<int>(input_char - 65), num, static_cast<int>(input_char2 - 65), num2);
 
         }
+        else if (input == "sort")
+        {   
+            cout << "asc or desc?\n";
+            cin >> input_string;
+            while (!(input_string == "asc") || !(input_string == "desc"))
+            {
+                cout << "Not a valid input. Try again.\n";
+                cin >> input_string;
+            }
+            if (input_string == "asc")
+            {
+                sort(matrix.begin(), matrix.end());
+            }
+            else if (input_string == "desc")
+            {
+                //sort(matrix.begin(), matrix.end(), mycomp);
+            }
+        }
         else if (input == "clear")
         {
-            
+	        cout << "Whats the first cell of the range?\n";
+	        cin >> input_char;
+	        cin >> num;
+	        input_char = toupper(input_char);
+	        while (!validrow(matrix, input_char) || !validcol(matrix, num))
+	        {
+	            cout << "Not a valid cell. Try again.\n";
+	            cin >> input_char;
+	            cin >> num;
+	        }
+
+	        cout << "Whats the second cell of the range?\n";
+	        cin >> input_char2;
+	        cin >> num2;
+	        input_char2 = toupper(input_char2);
+	        while (!validrow(matrix, input_char) || !validcol(matrix, num))
+	        {
+	            cout << "Not a valid cell. Try again.\n";
+	            cin >> input_char;
+	            cin >> num;
+	        }
+			clear(matrix, static_cast<int>(input_char - 65), num, static_cast<int>(input_char2 - 65), num2);
         }
         else if (input == "align")
         {
@@ -307,7 +359,7 @@ int main(const int argc, char** argv)
         }
         else
         {
-            cout << "Not a valid input. Please try again." << endl;
+            cout << "Not a valid input. Please try again.\n";
         }
         
     }

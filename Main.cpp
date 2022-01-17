@@ -347,33 +347,18 @@ int main(const int argc, char** argv)
 	            cin >> input_char;
 	            cin >> num;
 	        }
-            int minR;
-            int maxR;
-            int minC;
-            int maxC;
+	        const int min_c = (num > num2) ? num2 : num;
+	        const int max_c = (num > num2) ? num : num2;
 
-	        if (static_cast<int>(input_char - 65) > static_cast<int>(input_char2 - 65))
-	        {
-                maxR = static_cast<int>(input_char - 65);
-                minR = static_cast<int>(input_char2 - 65);
-	        }
-            else
-            {
-                minR = static_cast<int>(input_char - 65);
-                maxR = static_cast<int>(input_char2 - 65);
-            }
-	        if (num > num2)
-	        {
-                minC = num2;
-                maxC = num;
-	        }
-            else
-            {
-                minC = num;
-                maxC = num2;
-            }
+	        const int max_r = (static_cast<int>(input_char - 65) > static_cast<int>(input_char2 - 65))
+		                         ? static_cast<int>(input_char - 65)
+		                         : static_cast<int>(input_char2 - 65);
+	        const int min_r = (static_cast<int>(input_char - 65) > static_cast<int>(input_char2 - 65))
+		                         ? static_cast<int>(input_char2 - 65)
+		                         : static_cast<int>(input_char - 65);
+	        
 
-			clear(matrix, minR, minC, maxR, maxC);
+			clear(matrix, min_r, min_c, max_r, max_c);
         }
         else if (input == "align")
         {

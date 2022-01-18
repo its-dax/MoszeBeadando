@@ -74,7 +74,12 @@ int main(const int argc, char** argv)
     {
         print_matrix(matrix);
         cout << "What do you want to do? \nYou can do the following operations:\n";
-        cout << "Addrows, addcols, deleterow, deletecol, edit, swap, clear, align, save, exit\n\n";
+        cout << "--------------------------------------------------------------\n";
+        cout << "Increasing methods: addrows, addcols, insertrows, insertcols\n";
+        cout << "Decreasing methods: deleterow, deletecol\n";
+        cout << "Editing methods:    edit, swap, clear (range)\n";
+    	cout << "File methods:       save, exit\n";
+        cout << "--------------------------------------------------------------\n\n";
 
         cin >> input;
     	for_each(input.begin(), input.end(), [](char& c)
@@ -226,11 +231,11 @@ int main(const int argc, char** argv)
 	        cin >> input_char2;
 	        cin >> num2;
 	        input_char2 = toupper(input_char2);
-	        while (!validrow(matrix, input_char) || !validcol(matrix, num))
+	        while (!validrow(matrix, input_char2) || !validcol(matrix, num2))
 	        {
 	            cout << "Not a valid cell. Try again.\n";
-	            cin >> input_char;
-	            cin >> num;
+	            cin >> input_char2;
+	            cin >> num2;
 	        }
 	        const int min_c = (num > num2) ? num2 : num;
 	        const int max_c = (num > num2) ? num : num2;
@@ -250,7 +255,12 @@ int main(const int argc, char** argv)
 	        cin >> num;
 	        cout << "Before which row?\n";
 	        cin >> input_char;
-
+	        while (!validrow(matrix, input_char))
+	        {
+                cout << "Not a valid row. Try again.\n";
+                cin >> input_char;
+	        }
+            insert_rows(matrix, num, static_cast<int>(input_char - 65));
         }
         else if (input == "insertcols")
         {
@@ -258,7 +268,12 @@ int main(const int argc, char** argv)
 	        cin >> num;
 	        cout << "Before which col?\n";
 	        cin >> num2;
-
+	        while (!validcol(matrix,num2))
+	        {
+                cout << "Not a valid col. Try again.\n";
+                cin >> num2;
+	        }
+            insert_cols(matrix, num, num2);
         }
         else if (input == "save")
         {

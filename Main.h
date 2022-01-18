@@ -18,7 +18,7 @@ void print_matrix(const db &v)
     cout << "  | ";
     for (int j = 0; j < v[0].size(); j++)
     {   
-        cout << setw( 7 ) << right << j << ". col | ";
+        cout << setw( 7 ) << right << j << "      | ";
     }
     cout << endl;
 

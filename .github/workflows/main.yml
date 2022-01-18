@@ -10,3 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: g++ -o Main.exe Main.cpp
+      - run: sudo apt-get install doxygen
+      - run: sudo apt-get install graphwiz
+      - run: sudo apt-get install texlive
+      - run: doxygen Doxyfile

@@ -244,9 +244,21 @@ int main(const int argc, char** argv)
 	        
 			clear(matrix, min_r, min_c, max_r, max_c);
         }
-        else if (input == "align")
+        else if (input == "insertrows")
         {
-            
+	        cout << "How many?\n";
+	        cin >> num;
+	        cout << "Before which row?\n";
+	        cin >> input_char;
+
+        }
+        else if (input == "insertcols")
+        {
+	        cout << "How many?\n";
+	        cin >> num;
+	        cout << "Before which col?\n";
+	        cin >> num2;
+
         }
         else if (input == "save")
         {

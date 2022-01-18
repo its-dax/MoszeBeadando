@@ -74,6 +74,31 @@ void add_cols(db &v, const int n)
     }
 }
 
+auto insert_rows(db& v, const int n, const int x) -> void
+{
+    for (int i = 0; i < n; i++)
+    {
+        vec add;
+        for (int i = 0; i < v[0].size(); i++)
+        {
+            add.push_back(" ");
+        }
+
+        v.emplace(v.begin() + x,add);
+    }
+}
+
+void insert_cols(db& v, const int n, const int x)
+{
+    for (auto& j : v)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            j.emplace(j.begin() + x," ");
+        }
+    }
+}
+
 void edit(db &v, const int i, const int j, const string& value )
 {
     if (i < v.size() && j < v[j].size())

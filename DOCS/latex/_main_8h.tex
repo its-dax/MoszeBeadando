@@ -1,5 +1,5 @@
-\hypertarget{_main_8h}{}\doxysection{E\+:/\+C++/\+Mosze beadando/\+Main.h File Reference}
-\label{_main_8h}\index{E:/C++/Mosze beadando/Main.h@{E:/C++/Mosze beadando/Main.h}}
+\hypertarget{_main_8h}{}\doxysection{Main.\+h File Reference}
+\label{_main_8h}\index{Main.h@{Main.h}}
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
@@ -20,7 +20,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=205pt]{_main_8h__dep__incl}
+\includegraphics[width=136pt]{_main_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Typedefs}
@@ -34,33 +34,31 @@ using \mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} = vector
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_main_8h_a3ef3c534977ea431f94a612b319c095d}{print\+\_\+matrix}} (const \mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v)
-\item 
+\begin{DoxyCompactList}\small\item\em Printing the database to the screen. \end{DoxyCompactList}\item 
 auto \mbox{\hyperlink{_main_8h_a850002db8b2938cde9713245bb0f5fc4}{add\+\_\+rows}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int n) -\/$>$ void
-\item 
+\begin{DoxyCompactList}\small\item\em Adding N rows to the database. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_a86cafd4bb975d2ac53aabf5ad2fcf051}{add\+\_\+cols}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int n)
-\item 
+\begin{DoxyCompactList}\small\item\em Adding N cols to the database. \end{DoxyCompactList}\item 
 auto \mbox{\hyperlink{_main_8h_a354ce0974f5e4c6cd94f1f05d761ef04}{insert\+\_\+rows}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int n, const int x) -\/$>$ void
-\item 
+\begin{DoxyCompactList}\small\item\em Inserting N rows before the X row. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_a9242806b5e4f33bf0b2de4220777dfd8}{insert\+\_\+cols}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int n, const int x)
-\item 
+\begin{DoxyCompactList}\small\item\em Inserting N cols before the X col. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_aaa46b4e3dfa0994c4b49dbe74488a087}{edit}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int i, const int j, const string \&value)
-\item 
+\begin{DoxyCompactList}\small\item\em Inserting the value to the IJ cell in the database. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_a1bf26ae9c43cbb0eb745f5660efade21}{swap}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int i, const int j, const int x, const int y)
-\item 
+\begin{DoxyCompactList}\small\item\em Swapping the IJ cell with the XY cell. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_adf3ca3ba03bd33b8466806c7333ac56b}{delete\+\_\+row}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int row)
-\item 
+\begin{DoxyCompactList}\small\item\em Deleting \textquotesingle{}row\textquotesingle{}th row in the database. \end{DoxyCompactList}\item 
 auto \mbox{\hyperlink{_main_8h_a9ee55fd46658da8a9eb17a76a8bf6429}{delete\+\_\+col}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const int col) -\/$>$ void
-\item 
-bool \mbox{\hyperlink{_main_8h_aed52c981194b1984c876dac60e0b64ea}{mycomp}} (const string a, const string b)
-\item 
+\begin{DoxyCompactList}\small\item\em Deleting the \textquotesingle{}col\textquotesingle{}th column in the database. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{_main_8h_ab6cbed5de5ab8aabee405e78d96decc6}{validrow}} (const \mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&matrix, const char c)
-\item 
+\begin{DoxyCompactList}\small\item\em Checking if the given row is a valid row of the database. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{_main_8h_a40a3020476af5bae837c89af453db404}{validcol}} (const \mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&matrix, const int i)
-\item 
+\begin{DoxyCompactList}\small\item\em Checking if the given col is a valid col of the database. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_ab237e26cdc5b98f07c4dd5d406e16911}{clear}} (\mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, int i, const int j, const int x, const int y)
-\item 
+\begin{DoxyCompactList}\small\item\em Clearing the IJ-\/\+XY range of the database. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_main_8h_a0839830f7f44c76e679821c3ae74594b}{save}} (const \mbox{\hyperlink{_main_8h_a1a34bfb7a60124c4c8189bc0c7d7c7da}{db}} \&v, const string f\+\_\+name)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Saving the database to the given filename. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Typedef Documentation}
@@ -72,7 +70,7 @@ void \mbox{\hyperlink{_main_8h_a0839830f7f44c76e679821c3ae74594b}{save}} (const 
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00011}{11}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Definition at line \mbox{\hyperlink{_main_8h_source_l00013}{13}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 \mbox{\Hypertarget{_main_8h_ac4ba865c2f8f6f90e3c64552279f3d21}\label{_main_8h_ac4ba865c2f8f6f90e3c64552279f3d21}} 
 \index{Main.h@{Main.h}!vec@{vec}}
@@ -82,7 +80,7 @@ Definition at line \mbox{\hyperlink{_main_8h_source_l00011}{11}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00010}{10}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Definition at line \mbox{\hyperlink{_main_8h_source_l00012}{12}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 
 
@@ -95,7 +93,11 @@ Definition at line \mbox{\hyperlink{_main_8h_source_l00010}{10}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00066}{66}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Adding N cols to the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00070}{70}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -113,7 +115,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00052}{52}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Adding N rows to the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00055}{55}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -131,7 +137,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00168}{168}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Clearing the IJ-\/\+XY range of the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00174}{174}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -149,7 +159,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00126}{126}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Deleting the \textquotesingle{}col\textquotesingle{}th column in the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00135}{135}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -167,7 +181,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00117}{117}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Deleting \textquotesingle{}row\textquotesingle{}th row in the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00126}{126}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -185,7 +203,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00102}{102}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Inserting the value to the IJ cell in the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00109}{109}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -203,7 +225,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00091}{91}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Inserting N cols before the X col. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00097}{97}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -221,7 +247,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00077}{77}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Inserting N rows before the X row. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00082}{82}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -231,16 +261,6 @@ Here is the caller graph for this function\+:
 \includegraphics[width=220pt]{_main_8h_a354ce0974f5e4c6cd94f1f05d761ef04_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{_main_8h_aed52c981194b1984c876dac60e0b64ea}\label{_main_8h_aed52c981194b1984c876dac60e0b64ea}} 
-\index{Main.h@{Main.h}!mycomp@{mycomp}}
-\index{mycomp@{mycomp}!Main.h@{Main.h}}
-\doxysubsubsection{\texorpdfstring{mycomp()}{mycomp()}}
-{\footnotesize\ttfamily bool mycomp (\begin{DoxyParamCaption}\item[{const string}]{a,  }\item[{const string}]{b }\end{DoxyParamCaption})}
-
-
-
-Definition at line \mbox{\hyperlink{_main_8h_source_l00137}{137}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
-
 \mbox{\Hypertarget{_main_8h_a3ef3c534977ea431f94a612b319c095d}\label{_main_8h_a3ef3c534977ea431f94a612b319c095d}} 
 \index{Main.h@{Main.h}!print\_matrix@{print\_matrix}}
 \index{print\_matrix@{print\_matrix}!Main.h@{Main.h}}
@@ -249,7 +269,11 @@ Definition at line \mbox{\hyperlink{_main_8h_source_l00137}{137}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00014}{14}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Printing the database to the screen. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00016}{16}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -267,7 +291,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00180}{180}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Saving the database to the given filename. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00187}{187}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -285,7 +313,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00110}{110}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Swapping the IJ cell with the XY cell. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00118}{118}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -303,7 +335,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00155}{155}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Checking if the given col is a valid col of the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00160}{160}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak
@@ -321,7 +357,11 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line \mbox{\hyperlink{_main_8h_source_l00142}{142}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
+Checking if the given row is a valid row of the database. 
+
+
+
+Definition at line \mbox{\hyperlink{_main_8h_source_l00147}{147}} of file \mbox{\hyperlink{_main_8h_source}{Main.\+h}}.
 
 Here is the caller graph for this function\+:
 \nopagebreak

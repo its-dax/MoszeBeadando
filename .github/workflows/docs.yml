@@ -1,4 +1,4 @@
-name: Push doxygen
+name: docs.yml
 
 on:
   push:

@@ -1,5 +1,7 @@
 desktop.ini
 
+*.txt
+*.csv
 *.exe
 *.json
 /.vs/Mosze beadando/v17/ipch/AutoPCH/94405af4c260d9b1

@@ -151,3 +151,23 @@ void clear(db& v,  int i, const int j, const int x, const int y)
         }
 	}
 }
+
+void save(const db& v, const string f_name)
+{
+
+    ofstream outfile;
+    outfile.open(f_name, ios_base::out); // append instead of overwrite
+
+    for (const auto& a : v)
+    {
+        string f_line;
+        for (int b = 0; b < a.size(); b++)
+        {
+            f_line = f_line + a[b] + ";";
+        }
+        outfile << f_line << "\n";
+	    
+    }
+    outfile.close();
+
+}

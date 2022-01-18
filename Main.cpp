@@ -50,25 +50,22 @@ int main(const int argc, char** argv)
                 }
                 matrix.push_back(row);
                 row_count++;
-                
             }
-            cout << col_count << " " << row_count << " " << matrix.size() << " " << matrix[1].size();
 
-            for (int rowP = 0; rowP <= row_count; rowP++)
+            for (int row_p = 0; row_p <= row_count; row_p++)
             {
-	            if ((matrix[rowP].size()-1) <= col_count)
+	            if ((matrix[row_p].size()-1) <= col_count)
 	            {
-                    int col = matrix[rowP].size();
+                    int col = matrix[row_p].size();
                     for (col; col < col_count; col++)
                     {
                         
-                        matrix[rowP].emplace_back(" ");
+                        matrix[row_p].emplace_back(" ");
                     }
 	            }
             }
-
-            
         }
+        file.close();
     }
     
 
@@ -253,6 +250,11 @@ int main(const int argc, char** argv)
         }
         else if (input == "save")
         {
+			cout << "Type in filename please.\n";
+            cin >> input_string;
+            cout << "\nSaving..\n";
+
+            save(matrix, input_string);
             
         }
         else

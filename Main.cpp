@@ -4,16 +4,16 @@
 int main(const int argc, char** argv)
 {
  //Base region
-    bool exit = false;
-    string input;
-    string input_string;
-    string output;
-    char input_char;
-    char input_char2;
-    int num;
-    int num2;
-    db matrix;
-    vec first;
+    bool exit = false;      ///< If this is true, exit the application
+    string input;           ///< Input string of the method the user want to perform.
+    string input_string;    ///< Variable string input
+    string output;          ///< Output string for the edit function
+    char input_char;        ///< Row of the first input cell
+    char input_char2;       ///< Row of the second input cell
+    int num;                ///< Col of the first input cell  
+    int num2;               ///< Col of the second iunput cell
+    db matrix;              ///< The database vector of string vectors
+    vec first;              ///< Lines of the database
     first.push_back(" ");
     matrix.push_back(first);
  //Base region end

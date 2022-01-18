@@ -10,18 +10,18 @@ jobs:
     name: Deploy to github pages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+    - uses: actions/checkout@main
 
-      - run: sudo apt-get install doxygen
-      - run: sudo apt-get install graphwiz
-      - run: sudo apt-get install texlive
-      - run: doxygen Doxyfile
+    - run: sudo apt-get install doxygen
+    - run: sudo apt-get install graphwiz
+    - run: sudo apt-get install texlive
+    - run: doxygen Doxyfile
 
-      - name: Push git subdir as branch
+    - name: Push git subdir as branch
 
-      uses: s0/git-publish-subdir-action@v2.4.0
+    uses: s0/git-publish-subdir-action@v2.4.0
 
-      env:
+    env:
         REPO: self
         BRANCH: gh-pages
         FOLDER: Doxygen/html

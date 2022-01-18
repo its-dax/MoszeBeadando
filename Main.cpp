@@ -1,5 +1,6 @@
 #include "Main.h"
 
+
 int main(const int argc, char** argv)
 {
  //Base region
@@ -17,14 +18,57 @@ int main(const int argc, char** argv)
     matrix.push_back(first);
  //Base region end
 
+
     if (argc >= 2)
     {
         ifstream file(argv[1]);
+        int col_count = 0;
+        int row_count = 0;
+
+        if (!file.is_open())
+        {
+            cout << "\n===========================================";
+            cout << "\n!! File could not open, loading casually !!\n";
+            cout << "===========================================\n";
+        }
         while(file.good())
         {
+            matrix.pop_back();
+            first.pop_back();
+            string line;
+            
+            while (getline(file, line))
+            {
+                vector<string> row;
+                stringstream iss(line);
+                string val;
+                col_count = 0;
+                while (getline(iss, val, ';'))
+                {
+                    row.push_back(val);
+                    col_count++;
+                }
+                matrix.push_back(row);
+                row_count++;
+                
+            }
+            cout << col_count << " " << row_count << " " << matrix.size() << " " << matrix[1].size();
+
+            for (int rowP = 0; rowP <= row_count; rowP++)
+            {
+	            if ((matrix[rowP].size()-1) <= col_count)
+	            {
+                    int col = matrix[rowP].size();
+                    for (col; col < col_count; col++)
+                    {
+                        
+                        matrix[rowP].emplace_back(" ");
+                    }
+	            }
+            }
+
             
         }
-        //FILE* f = fopen(argv[1], "r");
     }
     
 

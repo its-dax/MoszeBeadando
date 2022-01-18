@@ -12,5 +12,4 @@ jobs:
       - run: g++ -o Main.exe Main.cpp
       - run: sudo apt-get install doxygen
       - run: sudo apt install graphviz
-      - run: sudo apt-get install texlive
       - run: doxygen Doxyfile

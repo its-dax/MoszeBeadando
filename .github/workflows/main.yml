@@ -13,3 +13,14 @@ jobs:
       - run: chmod +x run_test.sh
       - run: ./run_test.sh
       - run: diff output.csv good_output.txt
+
+  doxydeploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install build-essential
+      - run: sudo apt-get install doxygen
+      - run: sudo apt install graphviz
+      - run: sudo apt install texlive
+      - run: doxygen Doxyfile 

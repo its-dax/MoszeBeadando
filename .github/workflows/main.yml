@@ -10,3 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: g++ -Wall Main.cpp
+      - run: x./run_test.sh
+      - run: diff output.csv good_output.txt

@@ -1,0 +1,26 @@
+name: Full docker workflow
+
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: itsdax/moszerepo2022:firsttry
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the application
+       run: g++ -Wall Main.cpp
+      - name: Give permission to run the script
+        run: chmod +x run_test.sh
+      - name: Run test
+        run: ./run_test.sh
+        run: diff output.csv good_output.txt
+      - name: Run doxygen
+        run: doxygen Doxyfile 
+      - name: Make artifact from doxyfile
+        uses: actions/upload-artifact@v2
+        with:
+          name: Doxygen_documents
+          path: DOCS

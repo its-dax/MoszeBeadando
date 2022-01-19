@@ -22,5 +22,6 @@ jobs:
       - run: sudo apt-get install build-essential
       - run: sudo apt-get install doxygen
       - run: sudo apt install graphviz
+      - run: sudo apt-get update
       - run: sudo apt install texlive
       - run: doxygen Doxyfile 

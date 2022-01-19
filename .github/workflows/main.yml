@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: g++ -Wall *.cpp
+      - run: g++ -Wall Main.cpp
       - run: chmod +x run_test.sh
       - run: ./run_test.sh
       - run: diff output.csv good_output.txt

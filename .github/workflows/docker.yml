@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the application
-       run: g++ -Wall Main.cpp
+        run: g++ -Wall Main.cpp
       - name: Give permission to run the script
         run: chmod +x run_test.sh
       - name: Run test

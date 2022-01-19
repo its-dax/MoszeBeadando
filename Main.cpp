@@ -24,6 +24,12 @@ int main(const int argc, char** argv)
         ifstream file(argv[1]);
         int col_count = 0;
         int row_count = 0;
+        string sep = ";";
+
+        if (argc == 4)
+        {
+            sep = argv[3];
+        }
 
         if (!file.is_open())
         {
@@ -43,7 +49,7 @@ int main(const int argc, char** argv)
                 stringstream iss(line);
                 string val;
                 col_count = 0;
-                while (getline(iss, val, ';'))
+                while (getline(iss, val, sep[0]))
                 {
                     row.push_back(val);
                     col_count++;

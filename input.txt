@@ -1,0 +1,5 @@
+addrows 2
+addcols 2
+edit B1 first
+edit C1 second
+swap B1 C1

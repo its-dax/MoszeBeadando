@@ -5,29 +5,28 @@
 #include <vector>
 #include <iomanip>
 #include <fstream>
-#include <algorithm>
-#include <sstream>
+#include "functions.h"
 
 using namespace std;
 using vec = vector<string>;
 using db = vector<vec>;
 
 ///Printing the database to the screen
-inline void print_matrix(const db &v)
+inline void print_matrix(const db& v)
 {
-    int i= 65;
+    int i = 65;
     cout << endl;
     cout << "  | ";
     for (int j = 0; j < v[0].size(); j++)
-    {   
-        cout << setw( 7 ) << right << j << "      | ";
+    {
+        cout << setw(7) << right << j << "      | ";
     }
     cout << endl;
 
-    for(const vec& row : v)
+    for (const vec& row : v)
     {
         int row_count = 0;
-        for (string s:row)
+        for (string s : row)
         {
             if (row_count == 0)
             {
@@ -35,16 +34,16 @@ inline void print_matrix(const db &v)
             }
             else
             {
-                cout << "---------------"; 
+                cout << "---------------";
             }
             row_count++;
         }
         cout << endl;
         cout << static_cast<char>(i) << " | ";
         i++;
-        for (const string& s:row)
+        for (const string& s : row)
         {
-            cout << setw( 12 ) << left << s << " | ";
+            cout << setw(12) << left << s << " | ";
         }
         cout << endl;
     }
@@ -61,20 +60,20 @@ inline auto add_rows(db& v, const int n) -> void
         {
             add.push_back(" ");
         }
-        
+
         v.push_back(add);
     }
 }
 
 ///Adding N cols to the database
-inline void add_cols(db &v, const int n)
+inline void add_cols(db& v, const int n)
 {
     for (auto& j : v)
     {
         for (int i = 0; i < n; i++)
         {
-	        j.emplace_back(" ");
-        }   
+            j.emplace_back(" ");
+        }
     }
 }
 
@@ -89,7 +88,7 @@ inline auto insert_rows(db& v, const int n, const int x) -> void
             add.push_back(" ");
         }
 
-        v.emplace(v.begin() + x,add);
+        v.emplace(v.begin() + x, add);
     }
 }
 
@@ -100,13 +99,13 @@ inline void insert_cols(db& v, const int n, const int x)
     {
         for (int i = 0; i < n; i++)
         {
-            j.emplace(j.begin() + x," ");
+            j.emplace(j.begin() + x, " ");
         }
     }
 }
 
 ///Inserting the value to the IJ cell in the database
-inline void edit(db &v, const int i, const int j, const string& value )
+inline void edit(db& v, const int i, const int j, const string& value)
 {
     if (i < v.size() && j < v[j].size())
     {
@@ -123,22 +122,22 @@ inline void swap(db& v, const int i, const int j, const int x, const int y)
 }
 
 ///Deleting 'row'th row in the database.
-inline void delete_row(db &v, const int row)
+inline void delete_row(db& v, const int row)
 {
-    if(row < v.size())    
+    if (row < v.size())
     {
-        v.erase( v.begin() + row );
+        v.erase(v.begin() + row);
     }
 }
 
 ///Deleting the  'col'th column in the database
 inline auto delete_col(db& v, const int col) -> void
 {
-    for(vec &row : v)    
+    for (vec& row : v)
     {
-        if ( col < row.size() )     
+        if (col < row.size())
         {
-            row.erase( row.begin() + col );
+            row.erase(row.begin() + col);
         }
     }
 }
@@ -146,7 +145,7 @@ inline auto delete_col(db& v, const int col) -> void
 ///Checking if the given row is a valid row of the database.
 inline bool validrow(const db& matrix, const char c)
 {
-    if ((static_cast<int>(c) < 65) || (static_cast<int>(c) > 90) || ((static_cast<int>(c) - 65) > (matrix.size()-1)) || cin.fail())
+    if ((static_cast<int>(c) < 65) || (static_cast<int>(c) > 90) || ((static_cast<int>(c) - 65) > (matrix.size() - 1)) || cin.fail())
     {
         return false;
     }
@@ -154,12 +153,12 @@ inline bool validrow(const db& matrix, const char c)
     {
         return true;
     }
-} 
+}
 
 ///Checking if the given col is a valid col of the database.
 inline bool validcol(const db& matrix, const int i)
 {
-    if ((i >= 0) && (i <= (matrix[i].size()-1)))
+    if ((i >= 0) && (i <= (matrix[i].size() - 1)))
     {
         return true;
     }
@@ -167,26 +166,24 @@ inline bool validcol(const db& matrix, const int i)
     {
         return false;
     }
-    
 }
 
 ///Clearing the IJ-XY range of the database
-inline void clear(db& v,  int i, const int j, const int x, const int y)
+inline void clear(db& v, int i, const int j, const int x, const int y)
 {
-	for (i; i <= x; i++)
-	{
+    for (i; i <= x; i++)
+    {
         int n = j;
         for (n; n <= y; n++)
         {
             v[i][n] = " ";
         }
-	}
+    }
 }
 
 ///Saving the database to the given filename
 inline void save(const db& v, const string f_name, string separ)
 {
-
     ofstream outfile;
     outfile.open(f_name, ios_base::out); // append instead of overwrite
 
@@ -198,7 +195,6 @@ inline void save(const db& v, const string f_name, string separ)
             f_line = f_line + b + separ[0];
         }
         outfile << f_line << "\n";
-	    
     }
     outfile.close();
 }

@@ -1,5 +1,9 @@
-#include "Main.h"
+#include <algorithm>
+#include <fstream>
+#include <sstream>
+#include "functions.h"
 
+using namespace std;
 
 int main(const int argc, char** argv)
 {

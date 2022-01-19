@@ -25,3 +25,7 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt install texlive
       - run: doxygen Doxyfile 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Doxygen_artifact
+          path: \docs\html\index.html

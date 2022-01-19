@@ -13,7 +13,7 @@ using vec = vector<string>;
 using db = vector<vec>;
 
 ///Printing the database to the screen
-void print_matrix(const db &v)
+inline void print_matrix(const db &v)
 {
     int i= 65;
     cout << endl;
@@ -52,7 +52,7 @@ void print_matrix(const db &v)
 }
 
 ///Adding N rows to the database
-auto add_rows(db& v, const int n) -> void
+inline auto add_rows(db& v, const int n) -> void
 {
     for (int i = 0; i < n; i++)
     {
@@ -67,7 +67,7 @@ auto add_rows(db& v, const int n) -> void
 }
 
 ///Adding N cols to the database
-void add_cols(db &v, const int n)
+inline void add_cols(db &v, const int n)
 {
     for (auto& j : v)
     {
@@ -79,7 +79,7 @@ void add_cols(db &v, const int n)
 }
 
 ///Inserting N rows before the X row.
-auto insert_rows(db& v, const int n, const int x) -> void
+inline auto insert_rows(db& v, const int n, const int x) -> void
 {
     for (int i = 0; i < n; i++)
     {
@@ -94,7 +94,7 @@ auto insert_rows(db& v, const int n, const int x) -> void
 }
 
 ///Inserting N cols before the X col.
-void insert_cols(db& v, const int n, const int x)
+inline void insert_cols(db& v, const int n, const int x)
 {
     for (auto& j : v)
     {
@@ -106,7 +106,7 @@ void insert_cols(db& v, const int n, const int x)
 }
 
 ///Inserting the value to the IJ cell in the database
-void edit(db &v, const int i, const int j, const string& value )
+inline void edit(db &v, const int i, const int j, const string& value )
 {
     if (i < v.size() && j < v[j].size())
     {
@@ -115,7 +115,7 @@ void edit(db &v, const int i, const int j, const string& value )
 }
 
 ///Swapping the IJ cell with the XY cell.
-void swap(db& v, const int i, const int j, const int x, const int y)
+inline void swap(db& v, const int i, const int j, const int x, const int y)
 {
     const string temp = v[i][j];
     v[i][j] = v[x][y];
@@ -123,7 +123,7 @@ void swap(db& v, const int i, const int j, const int x, const int y)
 }
 
 ///Deleting 'row'th row in the database.
-void delete_row(db &v, const int row)
+inline void delete_row(db &v, const int row)
 {
     if(row < v.size())    
     {
@@ -132,7 +132,7 @@ void delete_row(db &v, const int row)
 }
 
 ///Deleting the  'col'th column in the database
-auto delete_col(db& v, const int col) -> void
+inline auto delete_col(db& v, const int col) -> void
 {
     for(vec &row : v)    
     {
@@ -144,7 +144,7 @@ auto delete_col(db& v, const int col) -> void
 }
 
 ///Checking if the given row is a valid row of the database.
-bool validrow(const db& matrix, const char c)
+inline bool validrow(const db& matrix, const char c)
 {
     if ((static_cast<int>(c) < 65) || (static_cast<int>(c) > 90) || ((static_cast<int>(c) - 65) > (matrix.size()-1)) || cin.fail())
     {
@@ -157,7 +157,7 @@ bool validrow(const db& matrix, const char c)
 } 
 
 ///Checking if the given col is a valid col of the database.
-bool validcol(const db& matrix, const int i)
+inline bool validcol(const db& matrix, const int i)
 {
     if ((i >= 0) && (i <= (matrix[i].size()-1)))
     {
@@ -171,7 +171,7 @@ bool validcol(const db& matrix, const int i)
 }
 
 ///Clearing the IJ-XY range of the database
-void clear(db& v,  int i, const int j, const int x, const int y)
+inline void clear(db& v,  int i, const int j, const int x, const int y)
 {
 	for (i; i <= x; i++)
 	{
@@ -184,7 +184,7 @@ void clear(db& v,  int i, const int j, const int x, const int y)
 }
 
 ///Saving the database to the given filename
-void save(const db& v, const string f_name, string separ)
+inline void save(const db& v, const string f_name, string separ)
 {
 
     ofstream outfile;
@@ -193,9 +193,9 @@ void save(const db& v, const string f_name, string separ)
     for (const auto& a : v)
     {
         string f_line;
-        for (int b = 0; b < a.size(); b++)
+        for (const auto& b : a)
         {
-            f_line = f_line + a[b] + separ[0];
+            f_line = f_line + b + separ[0];
         }
         outfile << f_line << "\n";
 	    

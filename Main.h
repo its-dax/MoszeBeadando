@@ -184,7 +184,7 @@ void clear(db& v,  int i, const int j, const int x, const int y)
 }
 
 ///Saving the database to the given filename
-void save(const db& v, const string f_name)
+void save(const db& v, const string f_name, string separ)
 {
 
     ofstream outfile;
@@ -195,7 +195,7 @@ void save(const db& v, const string f_name)
         string f_line;
         for (int b = 0; b < a.size(); b++)
         {
-            f_line = f_line + a[b] + ";";
+            f_line = f_line + a[b] + separ[0];
         }
         outfile << f_line << "\n";
 	    

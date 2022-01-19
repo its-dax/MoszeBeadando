@@ -285,9 +285,11 @@ int main(const int argc, char** argv)
         {
 			cout << "Type in filename please.\n";
             cin >> input_string;
+            cout << "Type in the separator of your choosing. For default: type in ';' \n";
+            cin >> output;
             cout << "\nSaving..\n";
 
-            save(matrix, input_string);
+            save(matrix, input_string, output);
             
         }
         else

@@ -1,15 +1,12 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
+  push
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - run: g++ -o Main.exe Main.cpp
-      - run: sudo apt-get install doxygen
-      - run: sudo apt install graphviz
-      - run: doxygen Doxyfile
+      - run: g++ -Wall Main.cpp

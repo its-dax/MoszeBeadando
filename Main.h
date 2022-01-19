@@ -1,5 +1,8 @@
 ///Header file for all functions
 
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -202,3 +205,4 @@ inline void save(const db& v, const string f_name, string separ)
     }
     outfile.close();
 }
+#endif // MAIN_H

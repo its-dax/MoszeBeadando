@@ -19,13 +19,29 @@ using db = vector<vec>;
 inline void print_matrix(const db &v)
 {
     int i= 65;
+    int size = 0;
+
+for (int x = 0; x < v.size(); x++)
+    {
+        for (int y = 0; y < v[0].size(); y++)
+        {
+            if (v[x][y].size() > size)
+            {
+                size = v[x][y].size();
+            }
+            
+        }
+    }
+
     cout << endl;
     cout << "  | ";
     for (int j = 0; j < v[0].size(); j++)
     {   
-        cout << setw( 7 ) << right << j << "      | ";
+        cout << setw( size ) << right << j << " | ";
     }
     cout << endl;
+
+    
 
     for(const vec& row : v)
     {
@@ -34,11 +50,19 @@ inline void print_matrix(const db &v)
         {
             if (row_count == 0)
             {
-                cout << "------------------";
+                cout << "---";
+                for (int f = 0; f < size+3; f++)
+                {
+                     cout << "-";
+                }
+                
             }
             else
             {
-                cout << "---------------"; 
+                for (int f = 0; f < size+3; f++)
+                {
+                     cout << "-";
+                }
             }
             row_count++;
         }
@@ -47,10 +71,11 @@ inline void print_matrix(const db &v)
         i++;
         for (const string& s:row)
         {
-            cout << setw( 12 ) << left << s << " | ";
+            cout << setw( size ) << right << s << " | ";
         }
         cout << endl;
     }
+    
     cout << endl;
 }
 

@@ -1,0 +1,16 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,309,56,336"/>
+<area shape="rect" id="node2" href="$_main_8h.html#a86cafd4bb975d2ac53aabf5ad2fcf051" title="Adding N cols to the database." alt="" coords="112,5,187,32"/>
+<area shape="rect" id="node3" href="$_main_8h.html#a850002db8b2938cde9713245bb0f5fc4" title="Adding N rows to the database." alt="" coords="111,56,188,83"/>
+<area shape="rect" id="node4" href="$_main_8h.html#ab237e26cdc5b98f07c4dd5d406e16911" title="Clearing the IJ&#45;XY range of the database." alt="" coords="124,107,175,133"/>
+<area shape="rect" id="node5" href="$_main_8h.html#a9ee55fd46658da8a9eb17a76a8bf6429" title="Deleting the &#39;col&#39;th column in the database." alt="" coords="109,157,190,184"/>
+<area shape="rect" id="node6" href="$_main_8h.html#adf3ca3ba03bd33b8466806c7333ac56b" title="Deleting &#39;row&#39;th row in the database." alt="" coords="107,208,191,235"/>
+<area shape="rect" id="node7" href="$_main_8h.html#aaa46b4e3dfa0994c4b49dbe74488a087" title="Inserting the value to the IJ cell in the database." alt="" coords="128,259,171,285"/>
+<area shape="rect" id="node8" href="$_main_8h.html#a9242806b5e4f33bf0b2de4220777dfd8" title="Inserting N cols before the X col." alt="" coords="107,309,192,336"/>
+<area shape="rect" id="node9" href="$_main_8h.html#a354ce0974f5e4c6cd94f1f05d761ef04" title="Inserting N rows before the X row." alt="" coords="105,360,193,387"/>
+<area shape="rect" id="node10" href="$_main_8h.html#a3ef3c534977ea431f94a612b319c095d" title="Printing the database to the screen." alt="" coords="104,411,195,437"/>
+<area shape="rect" id="node11" href="$_main_8h.html#a6a573d4e258a9e63fb0c3e7552a2ea25" title="Saving the database to the given filename." alt="" coords="125,461,173,488"/>
+<area shape="rect" id="node12" href="$_main_8h.html#a1bf26ae9c43cbb0eb745f5660efade21" title="Swapping the IJ cell with the XY cell." alt="" coords="123,512,175,539"/>
+<area shape="rect" id="node13" href="$_main_8h.html#a40a3020476af5bae837c89af453db404" title="Checking if the given col is a valid col of the database." alt="" coords="117,563,181,589"/>
+<area shape="rect" id="node14" href="$_main_8h.html#ab6cbed5de5ab8aabee405e78d96decc6" title="Checking if the given row is a valid row of the database." alt="" coords="116,613,183,640"/>
+</map>
